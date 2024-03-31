@@ -31,7 +31,7 @@ function CardWeather() {
       <CardHeader>
         {city?.name}, {city?.country}
       </CardHeader>
-      {console.log(city, 'city')}
+      {/* {console.log(city, 'city')} */}
 
       <Stack>
         <CardBody>

@@ -11,7 +11,8 @@ function InputWeather() {
   const { setCity } = useContext(globalContext)
 
   // const [resp, setResp] = useState({})
-  const handleChange = (event: any) => setValue(event.target.value)
+  const handleChange = (event: React.FormEvent<HTMLInputElement>) =>
+    setValue(event.currentTarget.value)
   async function getWeather(city: string) {
     setLoad(true)
     try {
