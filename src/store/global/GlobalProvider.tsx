@@ -1,17 +1,14 @@
-import { Dispatch, SetStateAction, createContext, useState } from 'react'
+import { createContext, useState } from 'react'
 
-export interface GlobalStateInterface {
-  firstname: string
-  lastname: string
-  age: string
-}
-export const globalContext = createContext({
-  state: {} as Partial<GlobalStateInterface>,
-  setState: {} as Dispatch<SetStateAction<Partial<GlobalStateInterface>>>,
-})
+// type ApiResponse = {
+//   name: string
+//   country: string
+// }
+
+export const globalContext = createContext()
 
 export const GlobalProvider = ({ children }: { children: React.ReactNode }) => {
-  const [city, setCity] = useState()
+  const [city, setCity] = useState<{ name: string; country: string }>()
 
   const values = {
     city,

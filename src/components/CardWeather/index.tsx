@@ -10,12 +10,6 @@ import {
 import { useContext } from 'react'
 import { globalContext } from '../../store/global/GlobalProvider'
 
-//     console.log(data.name);
-//     console.log(data.sys.country);
-//     console.log((data.wind.speed*3600/1000).toFixed(), "wind");
-//     console.log(data.main.temp.toFixed(), "temp");
-//     console.log(data.weather[0].main);
-
 function CardWeather() {
   const { city } = useContext(globalContext)
 
@@ -34,13 +28,16 @@ function CardWeather() {
         src="https://images.unsplash.com/photo-1667489022797-ab608913feeb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw5fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=800&q=60"
         alt="Caffe Latte"
       />
+      <CardHeader>
+        {city?.name}, {city?.country}
+      </CardHeader>
+      {console.log(city, 'city')}
 
       <Stack>
         <CardBody>
           <Heading size="md">
-            {city?.data?.name}, {city?.data?.sys?.country}
+            {city?.name}, {city?.country}
           </Heading>
-          {console.log(city, 'user')}
           <Text py="2">
             Temperature: {city?.data?.main?.temp?.toFixed() - 273}°C
           </Text>

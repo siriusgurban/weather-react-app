@@ -1,6 +1,6 @@
-import { Input, Button, ButtonGroup, Stack } from '@chakra-ui/react'
+import { Input, Button, Stack } from '@chakra-ui/react'
 import axios from 'axios'
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useState } from 'react'
 import { globalContext } from '../../store/global/GlobalProvider'
 
 const API_KEY = '1bd0fcbc9d17fde994dd15a7a0d12259'
@@ -19,7 +19,11 @@ function InputWeather() {
         `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`,
       )
       // setResp(response)
-      setCity(response)
+
+      setCity({
+        name: response?.data?.name,
+        country: response?.data?.sys?.country,
+      })
       console.log(response)
     } catch (error) {
       console.error(error)
