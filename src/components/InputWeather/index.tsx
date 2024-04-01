@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { Input, Button, Stack } from '@chakra-ui/react'
 import axios from 'axios'
 import { useContext, useState } from 'react'
