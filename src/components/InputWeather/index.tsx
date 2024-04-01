@@ -5,10 +5,22 @@ import { globalContext } from '../../store/global/GlobalProvider'
 
 const API_KEY = '1bd0fcbc9d17fde994dd15a7a0d12259'
 
+type Item = {
+  name: string
+  country: string
+}
+
+type ItemCity = {
+  city: Item
+  setCity: (item: Item) => void
+}
+
 function InputWeather() {
   const [value, setValue] = useState<string>('')
   const [load, setLoad] = useState<boolean>(false)
-  const { setCity } = useContext(globalContext)
+  const { setCity }: { setCity: ItemCity } = useContext<ItemCity | undefined>(
+    globalContext,
+  )
 
   // const [resp, setResp] = useState({})
   const handleChange = (event: React.FormEvent<HTMLInputElement>) =>

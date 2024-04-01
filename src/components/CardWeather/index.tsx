@@ -10,8 +10,26 @@ import {
 import { useContext } from 'react'
 import { globalContext } from '../../store/global/GlobalProvider'
 
+type Item = {
+  name: string
+  country: string
+}
+
+type ItemCity = {
+  city: Item
+  setCity: (item: Item) => void
+}
+
+// interface GlobalContextType {
+//   city: Item
+//   setCity: (item: Item) => void
+// }
+
 function CardWeather() {
-  const { city } = useContext(globalContext)
+  const { city }: { city: undefined } = useContext<ItemCity | undefined>(
+    globalContext,
+  )
+  console.log(city, 'city')
 
   return (
     <Card
@@ -28,24 +46,20 @@ function CardWeather() {
         src="https://images.unsplash.com/photo-1667489022797-ab608913feeb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw5fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=800&q=60"
         alt="Caffe Latte"
       />
-      <CardHeader>
-        {city?.name}, {city?.country}
-      </CardHeader>
+      <CardHeader>{/* {name}, {country} */}</CardHeader>
       {/* {console.log(city, 'city')} */}
 
       <Stack>
         <CardBody>
-          <Heading size="md">
-            {city?.name}, {city?.country}
-          </Heading>
-          <Text py="2">
-            Temperature: {city?.data?.main?.temp?.toFixed() - 273}°C
+          <Heading size="md">{/* {name}, {country} */}</Heading>
+          {/* <Text py="2">
+            Temperature: {data?.main?.temp?.toFixed() - 273}°C
           </Text>
           <Text>
-            Wind: {((city?.data?.wind?.speed * 3600) / 1000)?.toFixed()} km/h
+            Wind: {((data?.wind?.speed * 3600) / 1000)?.toFixed()} km/h
           </Text>
-          <Text>Humidity: {city?.data?.main?.humidity}%</Text>
-          <Text>{city?.data?.weather[0]?.main}</Text>
+          <Text>Humidity: {data?.main?.humidity}%</Text>
+          <Text>{data?.weather[0]?.main}</Text> */}
         </CardBody>
       </Stack>
     </Card>

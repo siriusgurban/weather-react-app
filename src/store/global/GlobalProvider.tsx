@@ -1,24 +1,26 @@
 import { createContext, useState } from 'react'
 
-interface Item {
+type Item = {
   name: string
   country: string
-  city: string
 }
 
-interface GlobalContextType {
+type ItemCity = {
   city: Item
   setCity: (item: Item) => void
 }
 
-export const globalContext = createContext<GlobalContextType | undefined>(
-  undefined,
-)
+// interface GlobalContextType {
+//   city: Item
+//   setCity: (item: Item) => void
+// }
+
+export const globalContext = createContext<ItemCity | undefined>(undefined)
 
 export const GlobalProvider = ({ children }: { children: React.ReactNode }) => {
-  const [city, setCity] = useState<Item>()
+  const [city, setCity] = useState<Item | undefined>(undefined)
 
-  const values: GlobalContextType = {
+  const values: ItemCity = {
     city,
     setCity,
   }
