@@ -38,8 +38,14 @@ function InputWeather() {
       setCity({
         name: response?.data?.name,
         country: response?.data?.sys?.country,
+        temp: response.data?.main?.temp,
+        wind: response.data?.wind?.speed,
+        humidity: response.data?.main?.humidity,
+        icon: response.data?.weather[0]?.icon,
+        type: response.data?.weather[0]?.main,
       })
       console.log(response)
+      console.log(response.data?.weather[0]?.icon, 'resp')
     } catch (error) {
       console.error(error)
     } finally {

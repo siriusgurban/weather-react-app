@@ -1,8 +1,17 @@
 // @ts-nocheck
 
-import { Card, CardBody, Image, Stack, Heading, Text } from '@chakra-ui/react'
+import {
+  Card,
+  CardBody,
+  Stack,
+  Heading,
+  Text,
+  Image,
+  Box,
+} from '@chakra-ui/react'
 import { useContext } from 'react'
 import { globalContext } from '../../store/global/GlobalProvider'
+import { IoSunnyOutline } from 'react-icons/io5'
 
 type Item = {
   name: string
@@ -25,35 +34,35 @@ function CardWeather() {
   )
   console.log(city, 'city')
 
-  return (
+  return city === undefined ? (
+    <></>
+  ) : (
     <Card
       direction={{ base: 'column', sm: 'row' }}
       overflow="hidden"
       variant="outline"
       colorScheme="blackAlpha"
+      bgColor="brown"
       p="10px"
       m="10px"
     >
-      <Image
-        objectFit="cover"
-        maxW={{ base: '100%', sm: '200px' }}
-        src="https://images.unsplash.com/photo-1667489022797-ab608913feeb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw5fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=800&q=60"
-        alt="Caffe Latte"
-      />
       {/* <CardHeader>{name}, {country}</CardHeader> */}
       {/* {console.log(city, 'city')} */}
 
       <Stack>
         <CardBody>
           <Heading size="md">
-            {name}, {country}
+            {city?.name}, {city?.country}
           </Heading>
-          <Text py="2">Temperature: {data?.main?.temp?.toFixed() - 273}°C</Text>
-          <Text>
-            Wind: {((data?.wind?.speed * 3600) / 1000)?.toFixed()} km/h
-          </Text>
-          <Text>Humidity: {data?.main?.humidity}%</Text>
-          <Text>{data?.weather[0]?.main}</Text>
+          <Text py="2">Temperature: {city?.temp?.toFixed() - 273}°C</Text>
+          <Text>Wind: {((city?.wind * 3600) / 1000)?.toFixed()} km/h</Text>
+          <Text>Humidity: {city?.humidity}%</Text>
+          <Box flex="center">
+            <Text>{city?.type}</Text>
+            <Image
+              src={`https://openweathermap.org/img/wn/${city?.icon}.png`}
+            />
+          </Box>
         </CardBody>
       </Stack>
     </Card>

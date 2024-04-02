@@ -5,6 +5,11 @@ import { createContext, useState } from 'react'
 type Item = {
   name: string
   country: string
+  temp: number
+  wind: number
+  humidity: number
+  icon: number
+  type: string
 }
 
 type ItemCity = {
