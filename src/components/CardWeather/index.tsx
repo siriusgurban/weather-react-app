@@ -9,9 +9,8 @@ import {
   Image,
   Box,
 } from '@chakra-ui/react'
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { globalContext } from '../../store/global/GlobalProvider'
-import { IoSunnyOutline } from 'react-icons/io5'
 
 type Item = {
   name: string
@@ -23,45 +22,41 @@ type ItemCity = {
   setCity: (item: Item) => void
 }
 
-// interface GlobalContextType {
-//   city: Item
-//   setCity: (item: Item) => void
-// }
-
 function CardWeather() {
   const { city }: { city: undefined } = useContext<ItemCity | undefined>(
     globalContext,
   )
-  console.log(city, 'city')
 
   return city === undefined ? (
     <></>
   ) : (
     <Card
-      direction={{ base: 'column', sm: 'row' }}
+      // direction={{ base: 'column', sm: 'row' }}
       overflow="hidden"
       variant="outline"
       colorScheme="blackAlpha"
-      bgColor="brown"
+      bgGradient="linear(to-t, green.300, yellow.500, blue.300)"
       p="10px"
       m="10px"
+      maxW="sm"
     >
-      {/* <CardHeader>{name}, {country}</CardHeader> */}
-      {/* {console.log(city, 'city')} */}
-
       <Stack>
-        <CardBody>
+        <CardBody flex="center" align="center">
           <Heading size="md">
             {city?.name}, {city?.country}
           </Heading>
           <Text py="2">Temperature: {city?.temp?.toFixed() - 273}°C</Text>
-          <Text>Wind: {((city?.wind * 3600) / 1000)?.toFixed()} km/h</Text>
-          <Text>Humidity: {city?.humidity}%</Text>
-          <Box flex="center">
+          <Text py="2">
+            Wind: {((city?.wind * 3600) / 1000)?.toFixed()} km/h
+          </Text>
+          <Text py="2">Humidity: {city?.humidity}%</Text>
+          <Box py="2" flex="center" direction="row" align="center">
             <Text>{city?.type}</Text>
-            <Image
-              src={`https://openweathermap.org/img/wn/${city?.icon}.png`}
-            />
+            <Box>
+              <Image
+                src={`https://openweathermap.org/img/wn/${city?.icon}.png`}
+              />
+            </Box>
           </Box>
         </CardBody>
       </Stack>

@@ -10,17 +10,13 @@ type Item = {
   humidity: number
   icon: number
   type: string
+  id: number
 }
 
 type ItemCity = {
   city: Item
   setCity: (item: Item) => void
 }
-
-// interface GlobalContextType {
-//   city: Item
-//   setCity: (item: Item) => void
-// }
 
 export const globalContext = createContext<ItemCity | undefined>(undefined)
 
